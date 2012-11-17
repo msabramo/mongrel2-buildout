@@ -27,7 +27,7 @@ $(M2SH): bin/buildout buildout.cfg
 run-buildout: bin/buildout buildout.cfg
 	bin/buildout
 
-test: run-mongrel test_mongrel2.py
+test: test_mongrel2.py
 	python test_mongrel2.py -v
 
 bin/buildout: bootstrap.py
