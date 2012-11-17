@@ -19,9 +19,10 @@ mongrel2-config-sqlite: $(MONGREL2_CONFIG_SQLITE)
 $(MONGREL2_CONFIG_SQLITE): $(MONGREL2_CONFIG_FILE) $(M2SH)
 	( cd $(MONGREL2_ROOT) && $(M2SH) load -config mysite.conf )
 
-$(M2SH): bin/buildout
+$(M2SH): bin/buildout buildout.cfg
+	bin/buildout
 
-run-buildout: bin/buildout
+run-buildout: bin/buildout buildout.cfg
 	bin/buildout
 
 test: run-mongrel test_mongrel2.py
