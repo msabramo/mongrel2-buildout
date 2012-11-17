@@ -5,4 +5,4 @@ bin/buildout: bootstrap.py
 	python bootstrap.py
 
 clean:
-	$(RM) -r bin develop-eggs parts
+	$(RM) -r bin develop-eggs parts var .installed.cfg
