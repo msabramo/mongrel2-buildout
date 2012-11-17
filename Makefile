@@ -15,6 +15,7 @@ run-mongrel: $(MONGREL2_CONFIG_SQLITE)
 	$(MKDIR) -p $(MONGREL2_ROOT)/tmp
 	$(SUPERVISORD)
 	# $(SUPERVISORCTL) start mongrel2
+	$(SUPERVISORCTL) status
 
 mongrel2-config-sqlite: $(MONGREL2_CONFIG_SQLITE)
 
