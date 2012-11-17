@@ -1,0 +1,5 @@
+.installed.cfg
+bin/
+bootstrap.py
+mongrel2-root/config.sqlite
+parts/
