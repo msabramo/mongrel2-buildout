@@ -2,4 +2,8 @@
 bin/
 bootstrap.py
 mongrel2-root/config.sqlite
+mongrel2-root/logs
+mongrel2-root/run
+mongrel2-root/tmp
 parts/
+var/
