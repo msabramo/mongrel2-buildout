@@ -17,7 +17,8 @@ Then do:
     make test
 
 This will run a short test that tests that Mongrel2 is up and serving a simple
-static page correctly.
+static page correctly at
+[http://localhost:6767/tests/](http://localhost:6767/tests/).
 
 [buildout]: http://www.buildout.org/
 [Mongrel2]: http://mongrel2.org/
