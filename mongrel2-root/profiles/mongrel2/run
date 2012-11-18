@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd ../
+PATH=/bin:/usr/bin:../parts/mongrel2/bin ../parts/mongrel2/bin/m2sh start -db config.sqlite -host localhost

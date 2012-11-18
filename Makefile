@@ -1,21 +1,18 @@
 MKDIR = mkdir
+WGET = wget
 
-MONGREL2_ROOT = mongrel2-root
+MONGREL2_ROOT := $(shell pwd)/mongrel2-root
 MONGREL2_CONFIG_FILE = $(MONGREL2_ROOT)/mysite.conf
 MONGREL2_CONFIG_SQLITE = $(MONGREL2_ROOT)/config.sqlite
 M2SH := $(shell pwd)/parts/mongrel2/bin/m2sh
-SUPERVISORD = bin/supervisord
-SUPERVISORCTL = bin/supervisorctl
+PROCER := $(shell pwd)/parts/mongrel2/bin/procer
 BOOTSTRAP_PY_URL = http://svn.zope.org/*checkout*/zc.buildout/trunk/bootstrap/bootstrap.py
-WGET = wget
 
 run-mongrel: $(MONGREL2_CONFIG_SQLITE)
 	$(MKDIR) -p $(MONGREL2_ROOT)/run
 	$(MKDIR) -p $(MONGREL2_ROOT)/logs
 	$(MKDIR) -p $(MONGREL2_ROOT)/tmp
-	$(SUPERVISORD)
-	# $(SUPERVISORCTL) start mongrel2
-	$(SUPERVISORCTL) status
+	$(PROCER) $(MONGREL2_ROOT)/profiles $(MONGREL2_ROOT)/run/procer.pid
 
 mongrel2-config-sqlite: $(MONGREL2_CONFIG_SQLITE)
 
