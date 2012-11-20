@@ -23,6 +23,7 @@ $(MONGREL2_CONFIG_SQLITE): $(MONGREL2_CONFIG_FILE) $(M2SH)
 
 $(M2SH): bin/buildout buildout.cfg
 	if [[ "$(PYTHON_VERSION)" == Python\ 3* ]]; then echo "*** Python 3 ***"; bin/buildout -c buildout-py3.cfg; else echo "*** Python 2 ***"; bin/buildout; fi
+	ln -s $$PWD/parts/mongrel2/bin/* bin/
 
 run-buildout: bin/buildout buildout.cfg
 	bin/buildout
