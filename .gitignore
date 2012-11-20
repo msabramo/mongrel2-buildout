@@ -8,3 +8,4 @@ mongrel2-root/tmp
 parts/
 var/
 mongrel2-root/profiles/*.log
+*.pyc
