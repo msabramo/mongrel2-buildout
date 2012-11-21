@@ -1,6 +1,7 @@
 SHELL = /bin/bash
 MKDIR = mkdir
 WGET = wget
+PYTHON ?= python
 
 PYTHON_VERSION := $(shell python -V 2>&1)
 MONGREL2_ROOT := $(shell pwd)/mongrel2-root
@@ -8,7 +9,7 @@ MONGREL2_CONFIG_FILE = $(MONGREL2_ROOT)/mysite.conf
 MONGREL2_CONFIG_SQLITE = $(MONGREL2_ROOT)/config.sqlite
 M2SH := $(shell pwd)/parts/mongrel2/bin/m2sh
 PROCER := $(shell pwd)/parts/mongrel2/bin/procer
-BOOTSTRAP_PY_URL = http://svn.zope.org/*checkout*/zc.buildout/branches/2/bootstrap/bootstrap.py
+BOOTSTRAP_PY_URL = https://raw.github.com/Pylons/webtest/master/bootstrap-py3k.py
 
 run-mongrel: $(MONGREL2_CONFIG_SQLITE)
 	$(MKDIR) -p $(MONGREL2_ROOT)/run
@@ -22,7 +23,7 @@ $(MONGREL2_CONFIG_SQLITE): $(MONGREL2_CONFIG_FILE) $(M2SH)
 	( cd $(MONGREL2_ROOT) && $(M2SH) load -config mysite.conf )
 
 $(M2SH): bin/buildout buildout.cfg
-	if [[ "$(PYTHON_VERSION)" == Python\ 3* ]]; then echo "*** Python 3 ***"; bin/buildout -c buildout-py3.cfg; else echo "*** Python 2 ***"; bin/buildout; fi
+	bin/buildout
 	ln -sf $$PWD/parts/mongrel2/bin/* bin/
 
 run-buildout: bin/buildout buildout.cfg
@@ -32,7 +33,7 @@ test: test_mongrel2.py
 	python test_mongrel2.py -v
 
 bin/buildout: bootstrap.py
-	python bootstrap.py
+	$(PYTHON) bootstrap.py
 
 bootstrap.py:
 	$(WGET) -O bootstrap.py $(BOOTSTRAP_PY_URL)
