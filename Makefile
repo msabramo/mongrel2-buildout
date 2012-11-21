@@ -27,6 +27,7 @@ $(M2SH): bin/buildout buildout.cfg
 	ln -sf $$PWD/parts/mongrel2/bin/* bin/
 
 run-buildout: bin/buildout buildout.cfg
+	pip freeze
 	bin/buildout
 
 test: test_mongrel2.py
